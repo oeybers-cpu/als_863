@@ -260,10 +260,9 @@
                 <li><button class="tab-button" data-tab="tab4"><i class="fas fa-graduation-cap"></i> Secondary Discourse</button></li>
                 <li><button class="tab-button" data-tab="tab5"><i class="fas fa-comments"></i> Social Languages</button></li>
                 <li><button class="tab-button" data-tab="tab6"><i class="fas fa-id-card"></i> Recognition and Identity</button></li>
-                <li><button class="tab-button" data-tab="tab7"><i class="fas fa-globe"></i> Sociocultural Framework</button></li>
-                <li><button class="tab-button" data-tab="tab8"><i class="fas fa-language"></i> Applied Linguistics Context</button></li>
-                <li><button class="tab-button" data-tab="tab9"><i class="fas fa-chalkboard-teacher"></i> Teaching Applications</button></li>
-                <li><button class="tab-button" data-tab="tab10"><i class="fas fa-search"></i> Research Methods and Tools</button></li>
+                <li><button class="tab-button" data-tab="tab7"><i class="fas fa-language"></i> Applied Linguistics Context</button></li>
+                <li><button class="tab-button" data-tab="tab8"><i class="fas fa-chalkboard-teacher"></i> Teaching Applications</button></li>
+                <li><button class="tab-button" data-tab="tab9"><i class="fas fa-search"></i> Research Methods and Tools</button></li>
             </ul>
         </nav>
 
@@ -320,7 +319,7 @@
             <div id="tab4" class="tab-content">
                 <h2>Secondary Discourse</h2>
                 <div class="content-body">
-                    <p>Secondary Discourses are those we develop through participation in institutions beyond the family, such as schools, workplaces, religious organizations, and community groups. These discourses often require more explicit teaching and learning than Primary Discourses.</p>
+                    <p>Secondary Discourses are those we develop through participation in institutions beyond the family, such as schools, workplaces, religious organisations, and community groups. These discourses often require more explicit teaching and learning than Primary Discourses.</p>
                     
                     <div class="notes-section">
                         <h3><i class="fas fa-pencil-alt"></i> Your Notes</h3>
@@ -349,12 +348,17 @@
                 </div>
             </div>
 
-            <!-- Additional tab contents would follow the same pattern -->
-
             <div id="tab6" class="tab-content">
                 <h2>Recognition and Identity</h2>
                 <div class="content-body">
-                    <p>Content for Recognition and Identity section...</p>
+                    <h3>Identity Construction</h3>
+                    <p>Discourse analysis helps in understanding how individuals construct their identities through language and communication. Our identities are not fixed entities but are continually shaped and reshaped through discursive practices. By analysing how people use language in various contexts, we can uncover the ways in which they position themselves and are positioned by others.</p>
+                    
+                    <h3>Social Recognition</h3>
+                    <p>Discourse analysis explores how people use language to gain recognition and acceptance within specific social groups. Through linguistic choices, individuals signal their belonging to particular communities and seek validation from others. This process of recognition is crucial for social integration and the development of a sense of self within a community.</p>
+                    
+                    <h3>Power Dynamics</h3>
+                    <p>Discourse analysis examines how language can reinforce or challenge power dynamics, influencing how identities are perceived and recognised. Language is not neutral; it reflects and reproduces social structures and hierarchies. By critically analysing discourse, we can uncover how certain identities are privileged while others are marginalised, and how these power relations are maintained or contested through language.</p>
                     
                     <div class="notes-section">
                         <h3><i class="fas fa-pencil-alt"></i> Your Notes</h3>
@@ -368,9 +372,9 @@
             </div>
 
             <div id="tab7" class="tab-content">
-                <h2>Sociocultural Framework</h2>
+                <h2>Applied Linguistics Context</h2>
                 <div class="content-body">
-                    <p>Content for Sociocultural Framework section...</p>
+                    <p>Content for Applied Linguistics Context section...</p>
                     
                     <div class="notes-section">
                         <h3><i class="fas fa-pencil-alt"></i> Your Notes</h3>
@@ -384,9 +388,9 @@
             </div>
 
             <div id="tab8" class="tab-content">
-                <h2>Applied Linguistics Context</h2>
+                <h2>Teaching Applications</h2>
                 <div class="content-body">
-                    <p>Content for Applied Linguistics Context section...</p>
+                    <p>Content for Teaching Applications section...</p>
                     
                     <div class="notes-section">
                         <h3><i class="fas fa-pencil-alt"></i> Your Notes</h3>
@@ -400,9 +404,9 @@
             </div>
 
             <div id="tab9" class="tab-content">
-                <h2>Teaching Applications</h2>
+                <h2>Research Methods and Tools</h2>
                 <div class="content-body">
-                    <p>Content for Teaching Applications section...</p>
+                    <p>Content for Research Methods and Tools section...</p>
                     
                     <div class="notes-section">
                         <h3><i class="fas fa-pencil-alt"></i> Your Notes</h3>
@@ -410,22 +414,6 @@
                         <div class="notes-actions">
                             <button class="action-btn download-btn" data-tab="tab9"><i class="fas fa-download"></i> Download Notes</button>
                             <button class="action-btn copy-btn" data-tab="tab9"><i class="fas fa-copy"></i> Copy Notes</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-
-            <div id="tab10" class="tab-content">
-                <h2>Research Methods and Tools</h2>
-                <div class="content-body">
-                    <p>Content for Research Methods and Tools section...</p>
-                    
-                    <div class="notes-section">
-                        <h3><i class="fas fa-pencil-alt"></i> Your Notes</h3>
-                        <textarea id="tab10-notes" placeholder="Write your notes here..."></textarea>
-                        <div class="notes-actions">
-                            <button class="action-btn download-btn" data-tab="tab10"><i class="fas fa-download"></i> Download Notes</button>
-                            <button class="action-btn copy-btn" data-tab="tab10"><i class="fas fa-copy"></i> Copy Notes</button>
                         </div>
                     </div>
                 </div>
@@ -459,7 +447,7 @@
             const toast = document.getElementById('toast');
             
             // Load saved notes from localStorage
-            for (let i = 1; i <= 10; i++) {
+            for (let i = 1; i <= 9; i++) {
                 const savedNotes = localStorage.getItem(`tab${i}-notes`);
                 if (savedNotes) {
                     document.getElementById(`tab${i}-notes`).value = savedNotes;
