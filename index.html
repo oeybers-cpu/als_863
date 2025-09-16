@@ -287,7 +287,7 @@
                 <li><button class="tab-button" data-tab="tab4"><i class="fas fa-graduation-cap"></i> Secondary Discourse</button></li>
                 <li><button class="tab-button" data-tab="tab5"><i class="fas fa-comments"></i> Social Languages</button></li>
                 <li><button class="tab-button" data-tab="tab6"><i class="fas fa-id-card"></i> Recognition and Identity</button></li>
-                <li><button class="tab-button" data-tab="tab7"><i class="fas fa-language"></i> Applied Linguistics Context</button></li>
+                <li><button class="tab-button" data-tab="tab7"><i class="fas fa-language"></i> Applied Language Studies Context</button></li>
                 <li><button class="tab-button" data-tab="tab8"><i class="fas fa-chalkboard-teacher"></i> Teaching Applications</button></li>
                 <li><button class="tab-button" data-tab="tab9"><i class="fas fa-search"></i> Research Methods and Tools</button></li>
                 <li><button class="tab-button" data-tab="tab10"><i class="fas fa-question-circle"></i> Reflective Questions</button></li>
@@ -400,9 +400,14 @@
             </div>
 
             <div id="tab7" class="tab-content">
-                <h2>Applied Linguistics Context</h2>
+                <h2>Applied Language Studies Context</h2>
                 <div class="content-body">
-                    <p>Content for Applied Linguistics Context section...</p>
+                    <p>Discourse Analysis enhances Applied Language Studies by:</p>
+                    <ul>
+                        <li>Providing insights into how language constructs social realities and identities.</li>
+                        <li>Revealing power dynamics embedded in language use across contexts.</li>
+                        <li>Informing language teaching through analysis of authentic communication patterns.</li>
+                    </ul>
                     
                     <div class="notes-section">
                         <h3><i class="fas fa-pencil-alt"></i> Your Notes</h3>
@@ -418,7 +423,14 @@
             <div id="tab8" class="tab-content">
                 <h2>Teaching Applications</h2>
                 <div class="content-body">
-                    <p>Content for Teaching Applications section...</p>
+                    <p>Discourse Analysis can be practically employed in the classroom through:</p>
+                    <ul>
+                        <li>Analyzing classroom discourse patterns to improve teacher-student interactions.</li>
+                        <li>Developing genre-based writing instruction using discourse models.</li>
+                        <li>Teaching critical discourse awareness to decode ideological messages.</li>
+                        <li>Using discourse completion tasks for pragmatic competence development.</li>
+                        <li>Designing authentic assessment tasks based on real-world discourse genres.</li>
+                    </ul>
                     
                     <div class="notes-section">
                         <h3><i class="fas fa-pencil-alt"></i> Your Notes</h3>
@@ -434,7 +446,13 @@
             <div id="tab9" class="tab-content">
                 <h2>Research Methods and Tools</h2>
                 <div class="content-body">
-                    <p>Content for Research Methods and Tools section...</p>
+                    <p>Discourse Analysis shapes empirical research by:</p>
+                    <ul>
+                        <li>Providing methodological frameworks for analyzing language in social context.</li>
+                        <li>Enabling critical examination of power relations in textual data.</li>
+                        <li>Informing ethnographic approaches through micro-analysis of interactions.</li>
+                        <li>Generating rich qualitative insights into identity construction processes.</li>
+                    </ul>
                     
                     <div class="notes-section">
                         <h3><i class="fas fa-pencil-alt"></i> Your Notes</h3>
@@ -501,7 +519,7 @@
                         <div class="question-text">Slide 6: What challenges might arise when primary and secondary discourses do not align, and how can educators address these challenges to support academic literacy?</div>
                         <textarea id="reflective-q6" placeholder="Write your reflection here..."></textarea>
                         <div class="notes-actions">
-                            <button class="action-btn download-btn" data-reflective="6"><i class="fas fa-download"></i> Download Response</button>
+                            <button class="action-btn download-btn" data-reflective="6"><i class="fas极速快3</i> Download Response</button>
                             <button class="action-btn copy-btn" data-reflective="6"><i class="fas fa-copy"></i> Copy Response</button>
                         </div>
                     </div>
@@ -511,14 +529,14 @@
                         <textarea id="reflective-q7" placeholder="Write your reflection here..."></textarea>
                         <div class="notes-actions">
                             <button class="action-btn download-btn" data-reflective="7"><i class="fas fa-download"></i> Download Response</button>
-                            <button class="action-btn copy-btn" data-reflective="7"><i class="fas fa-copy"></i> Copy Response</button>
+                            <button class="action-btn copy-btn" data极速快3="7"><i class="fas fa极速快3"></i> Copy Response</button>
                         </div>
                     </div>
                     
                     <div class="reflective-question">
                         <div class="question-text">Slide 8: How does discourse analysis help in understanding the relationship between language, identity, and power dynamics within educational settings?</div>
                         <textarea id="reflective-q8" placeholder="Write your reflection here..."></textarea>
-                        <div class="notes-actions">
+                        <div class="notes极速快3">
                             <button class="action-btn download-btn" data-reflective="8"><i class="fas fa-download"></i> Download Response</button>
                             <button class="action-btn copy-btn" data-reflective="8"><i class="fas fa-copy"></i> Copy Response</button>
                         </div>
@@ -538,7 +556,7 @@
         document.addEventListener('DOMContentLoaded', function() {
             // Tab switching functionality
             const tabButtons = document.querySelectorAll('.tab-button');
-            const tabContents = document.querySelectorAll('.tab-content');
+            const tabContents = document.querySelector极速快3('.tab-content');
             
             tabButtons.forEach(button => {
                 button.addEventListener('click', () => {
@@ -587,7 +605,7 @@
                     let content, filename;
                     
                     if (this.hasAttribute('data-tab')) {
-                        const tabId = this.getAttribute('data-tab');
+                        const tabId = this.getAttribute('极速快3');
                         content = document.getElementById(`${tabId}-notes`).value;
                         filename = `${tabId}-notes.txt`;
                     } else if (this.hasAttribute('data-reflective')) {
@@ -625,7 +643,7 @@
                         const tabId = this.getAttribute('data-tab');
                         content = document.getElementById(`${tabId}-notes`).value;
                     } else if (this.hasAttribute('data-reflective')) {
-                        const qNum = this.getAttribute('data-reflective');
+                        const q极速快3 = this.getAttribute('data-reflective');
                         content = document.getElementById(`reflective-q${qNum}`).value;
                     }
                     
@@ -667,7 +685,7 @@
                     return;
                 }
                 
-                const blob = new Blob([allContent], { type: 'text/plain' });
+                const blob = new Blob([极速快3], { type: 'text/plain' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
