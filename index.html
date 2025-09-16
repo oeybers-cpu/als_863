@@ -171,6 +171,7 @@
         .notes-actions {
             display: flex;
             gap: 10px;
+            flex-wrap: wrap;
         }
 
         button.action-btn {
@@ -223,6 +224,32 @@
             opacity: 1;
         }
 
+        .reflective-question {
+            background: white;
+            border-radius: 8px;
+            padding: 1.5rem;
+            margin-bottom: 1.5rem;
+            box-shadow: 0 2px 8px rgba(0, 0, 0, 0.08);
+            border-left: 4px solid #3498db;
+        }
+
+        .reflective-question h3 {
+            color: #2c3e50;
+            margin-bottom: 1rem;
+        }
+
+        .reflective-question .question-text {
+            font-weight: 600;
+            margin-bottom: 1rem;
+            color: #2c3e50;
+        }
+
+        .reflective-actions {
+            margin-top: 2rem;
+            display: flex;
+            justify-content: center;
+        }
+
         @media (max-width: 991px) {
             .container {
                 flex-direction: column;
@@ -263,6 +290,7 @@
                 <li><button class="tab-button" data-tab="tab7"><i class="fas fa-language"></i> Applied Linguistics Context</button></li>
                 <li><button class="tab-button" data-tab="tab8"><i class="fas fa-chalkboard-teacher"></i> Teaching Applications</button></li>
                 <li><button class="tab-button" data-tab="tab9"><i class="fas fa-search"></i> Research Methods and Tools</button></li>
+                <li><button class="tab-button" data-tab="tab10"><i class="fas fa-question-circle"></i> Reflective Questions</button></li>
             </ul>
         </nav>
 
@@ -418,6 +446,89 @@
                     </div>
                 </div>
             </div>
+
+            <div id="tab10" class="tab-content">
+                <h2>Reflective Questions</h2>
+                <div class="content-body">
+                    <p>These questions are designed to encourage deep reflection and critical thinking about the topics covered in each slide. Respond to each question at a Master's level, considering the theoretical and practical implications of discourse analysis in sociocultural linguistics.</p>
+                    
+                    <div class="reflective-question">
+                        <div class="question-text">Slide 1: How does the concept of discourse analysis in sociocultural linguistics challenge traditional views of language and communication?</div>
+                        <textarea id="reflective-q1" placeholder="Write your reflection here..."></textarea>
+                        <div class="notes-actions">
+                            <button class="action-btn download-btn" data-reflective="1"><i class="fas fa-download"></i> Download Response</button>
+                            <button class="action-btn copy-btn" data-reflective="1"><i class="fas fa-copy"></i> Copy Response</button>
+                        </div>
+                    </div>
+                    
+                    <div class="reflective-question">
+                        <div class="question-text">Slide 2: In what ways does James Paul Gee's definition of "Discourse" with a Big D expand our understanding of identity formation through language?</div>
+                        <textarea id="reflective-q2" placeholder="Write your reflection here..."></textarea>
+                        <div class="notes-actions">
+                            <button class="action-btn download-btn" data-reflective="2"><i class="fas fa-download"></i> Download Response</button>
+                            <button class="action-btn copy-btn" data-reflective="2"><i class="fas fa-copy"></i> Copy Response</button>
+                        </div>
+                    </div>
+                    
+                    <div class="reflective-question">
+                        <div class="question-text">Slide 3: How can understanding the social and cultural contexts of language use enhance the effectiveness of linguistic research?</div>
+                        <textarea id="reflective-q3" placeholder="Write your reflection here..."></textarea>
+                        <div class="notes-actions">
+                            <button class="action-btn download-btn" data-reflective="3"><i class="fas fa-download"></i> Download Response</button>
+                            <button class="action-btn copy-btn" data-reflective="3"><i class="fas fa-copy"></i> Copy Response</button>
+                        </div>
+                    </div>
+                    
+                    <div class="reflective-question">
+                        <div class="question-text">Slide 4: How can teachers apply discourse analysis to create more inclusive and effective classroom environments?</div>
+                        <textarea id="reflective-q4" placeholder="Write your reflection here..."></textarea>
+                        <div class="notes-actions">
+                            <button class="action-btn download-btn" data-reflective="4"><i class="fas fa-download"></i> Download Response</button>
+                            <button class="action-btn copy-btn" data-reflective="4"><i class="fas fa-copy"></i> Copy Response</button>
+                        </div>
+                    </div>
+                    
+                    <div class="reflective-question">
+                        <div class="question-text">Slide 5: How do primary discourses shape an individual's fundamental identity and worldview, and what implications does this have for early childhood education?</div>
+                        <textarea id="reflective-q5" placeholder="Write your reflection here..."></textarea>
+                        <div class="notes-actions">
+                            <button class="action-btn download-btn" data-reflective="5"><i class="fas fa-download"></i> Download Response</button>
+                            <button class="action-btn copy-btn" data-reflective="5"><i class="fas fa-copy"></i> Copy Response</button>
+                        </div>
+                    </div>
+                    
+                    <div class="reflective-question">
+                        <div class="question-text">Slide 6: What challenges might arise when primary and secondary discourses do not align, and how can educators address these challenges to support academic literacy?</div>
+                        <textarea id="reflective-q6" placeholder="Write your reflection here..."></textarea>
+                        <div class="notes-actions">
+                            <button class="action-btn download-btn" data-reflective="6"><i class="fas fa-download"></i> Download Response</button>
+                            <button class="action-btn copy-btn" data-reflective="6"><i class="fas fa-copy"></i> Copy Response</button>
+                        </div>
+                    </div>
+                    
+                    <div class="reflective-question">
+                        <div class="question-text">Slide 7: How can awareness of social languages contribute to more inclusive teaching, learning, and assessment practices in diverse classrooms?</div>
+                        <textarea id="reflective-q7" placeholder="Write your reflection here..."></textarea>
+                        <div class="notes-actions">
+                            <button class="action-btn download-btn" data-reflective="7"><i class="fas fa-download"></i> Download Response</button>
+                            <button class="action-btn copy-btn" data-reflective="7"><i class="fas fa-copy"></i> Copy Response</button>
+                        </div>
+                    </div>
+                    
+                    <div class="reflective-question">
+                        <div class="question-text">Slide 8: How does discourse analysis help in understanding the relationship between language, identity, and power dynamics within educational settings?</div>
+                        <textarea id="reflective-q8" placeholder="Write your reflection here..."></textarea>
+                        <div class="notes-actions">
+                            <button class="action-btn download-btn" data-reflective="8"><i class="fas fa-download"></i> Download Response</button>
+                            <button class="action-btn copy-btn" data-reflective="8"><i class="fas fa-copy"></i> Copy Response</button>
+                        </div>
+                    </div>
+                    
+                    <div class="reflective-actions">
+                        <button class="action-btn download-btn" id="download-all-reflective"><i class="fas fa-download"></i> Download All Responses</button>
+                    </div>
+                </div>
+            </div>
         </main>
     </div>
 
@@ -454,30 +565,50 @@
                 }
             }
             
+            // Load saved reflective responses
+            for (let i = 1; i <= 8; i++) {
+                const savedResponse = localStorage.getItem(`reflective-q${i}`);
+                if (savedResponse) {
+                    document.getElementById(`reflective-q${i}`).value = savedResponse;
+                }
+            }
+            
             // Save notes when user types
             document.querySelectorAll('textarea').forEach(textarea => {
                 textarea.addEventListener('input', function() {
-                    const tabId = this.id.split('-')[0];
-                    localStorage.setItem(`${tabId}-notes`, this.value);
+                    const id = this.id;
+                    localStorage.setItem(id, this.value);
                 });
             });
             
             // Download notes functionality
             document.querySelectorAll('.download-btn').forEach(button => {
                 button.addEventListener('click', function() {
-                    const tabId = this.getAttribute('data-tab');
-                    const notes = document.getElementById(`${tabId}-notes`).value;
+                    let content, filename;
                     
-                    if (notes.trim() === '') {
-                        alert('Please write some notes before downloading.');
+                    if (this.hasAttribute('data-tab')) {
+                        const tabId = this.getAttribute('data-tab');
+                        content = document.getElementById(`${tabId}-notes`).value;
+                        filename = `${tabId}-notes.txt`;
+                    } else if (this.hasAttribute('data-reflective')) {
+                        const qNum = this.getAttribute('data-reflective');
+                        content = document.getElementById(`reflective-q${qNum}`).value;
+                        const question = document.querySelector(`[data-reflective="${qNum}"]`).closest('.reflective-question').querySelector('.question-text').textContent;
+                        filename = `Reflective-Response-${qNum}.txt`;
+                        // Format content with question and response for individual download
+                        content = `${question}\n\n${content}`;
+                    }
+                    
+                    if (content.trim() === '') {
+                        alert('Please write some content before downloading.');
                         return;
                     }
                     
-                    const blob = new Blob([notes], { type: 'text/plain' });
+                    const blob = new Blob([content], { type: 'text/plain' });
                     const url = URL.createObjectURL(blob);
                     const a = document.createElement('a');
                     a.href = url;
-                    a.download = `${tabId}-notes.txt`;
+                    a.download = filename;
                     document.body.appendChild(a);
                     a.click();
                     document.body.removeChild(a);
@@ -488,25 +619,63 @@
             // Copy notes functionality
             document.querySelectorAll('.copy-btn').forEach(button => {
                 button.addEventListener('click', function() {
-                    const tabId = this.getAttribute('data-tab');
-                    const notes = document.getElementById(`${tabId}-notes`).value;
+                    let content;
                     
-                    if (notes.trim() === '') {
-                        alert('Please write some notes before copying.');
+                    if (this.hasAttribute('data-tab')) {
+                        const tabId = this.getAttribute('data-tab');
+                        content = document.getElementById(`${tabId}-notes`).value;
+                    } else if (this.hasAttribute('data-reflective')) {
+                        const qNum = this.getAttribute('data-reflective');
+                        content = document.getElementById(`reflective-q${qNum}`).value;
+                    }
+                    
+                    if (content.trim() === '') {
+                        alert('Please write some content before copying.');
                         return;
                     }
                     
-                    navigator.clipboard.writeText(notes).then(function() {
+                    navigator.clipboard.writeText(content).then(function() {
                         // Show toast notification
+                        toast.textContent = 'Content copied to clipboard!';
                         toast.classList.add('show');
                         setTimeout(function() {
                             toast.classList.remove('show');
                         }, 2000);
                     }).catch(function(err) {
                         console.error('Could not copy text: ', err);
-                        alert('Failed to copy notes. Please try again.');
+                        alert('Failed to copy content. Please try again.');
                     });
                 });
+            });
+            
+            // Download all reflective responses
+            document.getElementById('download-all-reflective').addEventListener('click', function() {
+                let allContent = "Reflective Questions - Discourse Analysis within a Sociocultural Linguistic Framework\n";
+                allContent += "====================================================================================\n\n";
+                
+                for (let i = 1; i <= 8; i++) {
+                    const question = document.querySelector(`[data-reflective="${i}"]`).closest('.reflective-question').querySelector('.question-text').textContent;
+                    const response = document.getElementById(`reflective-q${i}`).value;
+                    
+                    allContent += `${question}\n`;
+                    allContent += `${response}\n\n`;
+                    allContent += "------------------------------------------------------------------------------------\n\n";
+                }
+                
+                if (allContent.trim() === "Reflective Questions - Discourse Analysis within a Sociocultural Linguistic Framework\n====================================================================================\n\n") {
+                    alert('Please write some responses before downloading.');
+                    return;
+                }
+                
+                const blob = new Blob([allContent], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = 'All-Reflective-Responses.txt';
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
             });
         });
     </script>
