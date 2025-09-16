@@ -1,23 +1,309 @@
-_
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Discourse Analysis Notes</title>
+    <style>
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+        }
+        
+        body {
+            background-color: #f5f7fa;
+            color: #333;
+            line-height: 1.6;
+            padding: 20px;
+        }
+        
+        .container {
+            max-width: 1000px;
+            margin: 0 auto;
+            background: white;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            overflow: hidden;
+        }
+        
+        header {
+            background: #2c3e50;
+            color: white;
+            padding: 20px;
+            text-align: center;
+        }
+        
+        .content {
+            padding: 30px;
+        }
+        
+        h3 {
+            color: #2c3e50;
+            margin-bottom: 15px;
+            border-bottom: 2px solid #eaecef;
+            padding-bottom: 10px;
+        }
+        
+        p {
+            margin-bottom: 15px;
+        }
+        
+        ul {
+            margin-left: 20px;
+            margin-bottom: 20px;
+        }
+        
+        li {
+            margin-bottom: 8px;
+        }
+        
+        .notes-section {
+            background: #f8f9fa;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 30px;
+            border-left: 4px solid #3498db;
+        }
+        
+        .notes-section h4 {
+            margin-bottom: 15px;
+            color: #2c3e50;
+        }
+        
+        textarea {
+            width: 100%;
+            height: 150px;
+            padding: 15px;
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            resize: vertical;
+            font-size: 16px;
+            margin-bottom: 15px;
+        }
+        
+        .notes-actions {
+            display: flex;
+            gap: 10px;
+        }
+        
+        button {
+            padding: 10px 15px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            font-weight: 600;
+            transition: all 0.3s ease;
+        }
+        
+        .download-btn {
+            background: #2ecc71;
+            color: white;
+        }
+        
+        .download-btn:hover {
+            background: #27ae60;
+        }
+        
+        .copy-btn {
+            background: #3498db;
+            color: white;
+        }
+        
+        .copy-btn:hover {
+            background: #2980b9;
+        }
+        
+        .page-navigation {
+            display: flex;
+            justify-content: space-between;
+            margin-top: 30px;
+            padding: 20px;
+            border-top: 1px solid #eaecef;
+        }
+        
+        .nav-btn {
+            padding: 10px 20px;
+            background: #2c3e50;
+            color: white;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+        }
+        
+        .nav-btn:hover {
+            background: #1a252f;
+        }
+        
+        .page-indicator {
+            text-align: center;
+            padding: 10px;
+            color: #7f8c8d;
+            font-weight: 500;
+        }
+        
+        .toast {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            padding: 15px 25px;
+            background: rgba(44, 62, 80, 0.9);
+            color: white;
+            border-radius: 4px;
+            opacity: 0;
+            transition: opacity 0.3s;
+        }
+        
+        .toast.show {
+            opacity: 1;
+        }
+        
+        @media (max-width: 768px) {
+            .notes-actions {
+                flex-direction: column;
+            }
+            
+            button {
+                width: 100%;
+            }
+        }
+    </style>
+</head>
+<body>
+    <div class="container">
+        <header>
+            <h1>Discourse Analysis</h1>
+            <p>Interactive Notes Page</p>
+        </header>
+        
+        <div class="content">
+            <h3>What is Discourse Analysis?</h3>
+            <p>Discourse analysis is the study of language in use, whether in the form of text or talk. It goes beyond the sentence level to understand how language is used in real-life contexts to achieve social purposes. Rather than focusing on the formal structure of language, discourse analysis examines how people use language to do things, to be certain kinds of people, and to make sense of the world and their experiences in it.</p>
 
+            <h3>A Sociocultural Linguistic Framework</h3>
+            <p>Within a sociocultural linguistic framework, discourse analysis is not just about language itself, but about the interplay between language, culture, and society. This perspective, heavily influenced by the work of scholars like James Paul Gee, emphasizes that language is a social practice. It is through our use of language that we enact social identities, build relationships, and participate in social and cultural groups. This approach moves away from viewing language as a neutral tool for communication and instead sees it as a powerful force that shapes our social world.</p>
 
-
-<h3>What is Discourse Analysis?</h3>
-<p>Discourse analysis is the study of language in use, whether in the form of text or talk. It goes beyond the sentence level to understand how language is used in real-life contexts to achieve social purposes. Rather than focusing on the formal structure of language, discourse analysis examines how people use language to do things, to be certain kinds of people, and to make sense of the world and their experiences in it.</p>
-
-<h3>A Sociocultural Linguistic Framework</h3>
-<p>Within a sociocultural linguistic framework, discourse analysis is not just about language itself, but about the interplay between language, culture, and society. This perspective, heavily influenced by the work of scholars like James Paul Gee, emphasizes that language is a social practice. It is through our use of language that we enact social identities, build relationships, and participate in social and cultural groups. This approach moves away from viewing language as a neutral tool for communication and instead sees it as a powerful force that shapes our social world.</p>
-
-<h3>Key Concepts to be Explored</h3>
-<p>This website will guide you through the foundational concepts of discourse analysis from a sociocultural perspective. We will explore:</p>
-<ul>
-    <li>The crucial distinction between "big D" Discourse and "little d" discourse.</li>
-    <li>The concepts of Primary and Secondary Discourses and how they shape our lives.</li>
-    <li>The role of social languages in different contexts.</li>
-    <li>How we use language to gain recognition and construct our identities.</li>
-    <li>The broader sociocultural framework that underpins this approach to discourse analysis.</li>
-    <li>The applications of discourse analysis in applied linguistics and teaching.</li>
-    <li>The methods and tools used to conduct discourse analysis research.</li>
-</ul>
-
-
+            <h3>Key Concepts to be Explored</h3>
+            <p>This website will guide you through the foundational concepts of discourse analysis from a sociocultural perspective. We will explore:</p>
+            <ul>
+                <li>The crucial distinction between "big D" Discourse and "little d" discourse.</li>
+                <li>The concepts of Primary and Secondary Discourses and how they shape our lives.</li>
+                <li>The role of social languages in different contexts.</li>
+                <li>How we use language to gain recognition and construct our identities.</li>
+                <li>The broader sociocultural framework that underpins this approach to discourse analysis.</li>
+                <li>The applications of discourse analysis in applied linguistics and teaching.</li>
+                <li>The methods and tools used to conduct discourse analysis research.</li>
+            </ul>
+            
+            <div class="notes-section">
+                <h4>Your Notes</h4>
+                <textarea id="notes-field" placeholder="Write your notes here..."></textarea>
+                <div class="notes-actions">
+                    <button class="download-btn" id="download-btn">Download Notes</button>
+                    <button class="copy-btn" id="copy-btn">Copy Notes</button>
+                </div>
+            </div>
+        </div>
+        
+        <div class="page-indicator">Page 1 of 10</div>
+        
+        <div class="page-navigation">
+            <button class="nav-btn" id="prev-btn" disabled>Previous</button>
+            <button class="nav-btn" id="next-btn">Next</button>
+        </div>
+    </div>
+    
+    <div class="toast" id="toast">Notes copied to clipboard!</div>
+    
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            const notesField = document.getElementById('notes-field');
+            const downloadBtn = document.getElementById('download-btn');
+            const copyBtn = document.getElementById('copy-btn');
+            const prevBtn = document.getElementById('prev-btn');
+            const nextBtn = document.getElementById('next-btn');
+            const toast = document.getElementById('toast');
+            const pageIndicator = document.querySelector('.page-indicator');
+            
+            let currentPage = 1;
+            const totalPages = 10;
+            
+            // Load saved notes from localStorage if available
+            const savedNotes = localStorage.getItem(`page${currentPage}-notes`);
+            if (savedNotes) {
+                notesField.value = savedNotes;
+            }
+            
+            // Save notes when user types
+            notesField.addEventListener('input', function() {
+                localStorage.setItem(`page${currentPage}-notes`, notesField.value);
+            });
+            
+            // Download notes functionality
+            downloadBtn.addEventListener('click', function() {
+                const notes = notesField.value;
+                if (notes.trim() === '') {
+                    alert('Please write some notes before downloading.');
+                    return;
+                }
+                
+                const blob = new Blob([notes], { type: 'text/plain' });
+                const url = URL.createObjectURL(blob);
+                const a = document.createElement('a');
+                a.href = url;
+                a.download = `discourse-analysis-page-${currentPage}-notes.txt`;
+                document.body.appendChild(a);
+                a.click();
+                document.body.removeChild(a);
+                URL.revokeObjectURL(url);
+            });
+            
+            // Copy notes functionality
+            copyBtn.addEventListener('click', function() {
+                const notes = notesField.value;
+                if (notes.trim() === '') {
+                    alert('Please write some notes before copying.');
+                    return;
+                }
+                
+                navigator.clipboard.writeText(notes).then(function() {
+                    // Show toast notification
+                    toast.classList.add('show');
+                    setTimeout(function() {
+                        toast.classList.remove('show');
+                    }, 2000);
+                }).catch(function(err) {
+                    console.error('Could not copy text: ', err);
+                    alert('Failed to copy notes. Please try again.');
+                });
+            });
+            
+            // Navigation functionality
+            function updateNavigation() {
+                pageIndicator.textContent = `Page ${currentPage} of ${totalPages}`;
+                prevBtn.disabled = currentPage === 1;
+                nextBtn.disabled = currentPage === totalPages;
+                
+                // Load saved notes for current page
+                const savedNotes = localStorage.getItem(`page${currentPage}-notes`);
+                notesField.value = savedNotes || '';
+            }
+            
+            nextBtn.addEventListener('click', function() {
+                if (currentPage < totalPages) {
+                    currentPage++;
+                    updateNavigation();
+                }
+            });
+            
+            prevBtn.addEventListener('click', function() {
+                if (currentPage > 1) {
+                    currentPage--;
+                    updateNavigation();
+                }
+            });
+        });
+    </script>
+</body>
+</html>
