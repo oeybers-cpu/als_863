@@ -20,7 +20,7 @@
         }
 
         .container {
-            max-width: 1000px;
+            max-width: 900px;
             margin: 0 auto;
             background: white;
             border-radius: 10px;
@@ -74,7 +74,7 @@
 
         textarea {
             width: 100%;
-            height: 150px;
+            height: 250px; /* Increased height for a larger note-taking area */
             padding: 15px;
             border: 1px solid #ddd;
             border-radius: 6px;
@@ -113,34 +113,6 @@
 
         .copy-btn:hover {
             background: #2980b9;
-        }
-
-        .page-navigation {
-            display: flex;
-            justify-content: space-between;
-            margin-top: 30px;
-            padding: 20px;
-            border-top: 1px solid #eaecef;
-        }
-
-        .nav-btn {
-            padding: 10px 20px;
-            background: #2c3e50;
-            color: white;
-            border: none;
-            border-radius: 4px;
-            cursor: pointer;
-        }
-
-        .nav-btn:hover {
-            background: #1a252f;
-        }
-
-        .page-indicator {
-            text-align: center;
-            padding: 10px;
-            color: #7f8c8d;
-            font-weight: 500;
         }
 
         .toast {
@@ -205,13 +177,6 @@
                 </div>
             </div>
         </div>
-
-        <div class="page-indicator">Page 1 of 10</div>
-
-        <div class="page-navigation">
-            <button class="nav-btn" id="prev-btn" disabled>Previous</button>
-            <button class="nav-btn" id="next-btn">Next</button>
-        </div>
     </div>
 
     <div class="toast" id="toast">Notes copied to clipboard!</div>
@@ -221,24 +186,18 @@
             const notesField = document.getElementById('notes-field');
             const downloadBtn = document.getElementById('download-btn');
             const copyBtn = document.getElementById('copy-btn');
-            const prevBtn = document.getElementById('prev-btn');
-            const nextBtn = document.getElementById('next-btn');
             const toast = document.getElementById('toast');
-            const pageIndicator = document.querySelector('.page-indicator');
 
-            let currentPage = 1;
-            const totalPages = 10;
-
-            // Load saved notes from localStorage if available
-            function loadNotes() {
-                const savedNotes = localStorage.getItem(`page${currentPage}-notes`);
-                notesField.value = savedNotes || '';
-            }
-
-            // Save notes when user types
+            // Save notes to localStorage
             notesField.addEventListener('input', function() {
-                localStorage.setItem(`page${currentPage}-notes`, notesField.value);
+                localStorage.setItem('discourse-notes', notesField.value);
             });
+
+            // Load saved notes from localStorage
+            const savedNotes = localStorage.getItem('discourse-notes');
+            if (savedNotes) {
+                notesField.value = savedNotes;
+            }
 
             // Download notes functionality
             downloadBtn.addEventListener('click', function() {
@@ -247,12 +206,11 @@
                     alert('Please write some notes before downloading.');
                     return;
                 }
-
                 const blob = new Blob([notes], { type: 'text/plain' });
                 const url = URL.createObjectURL(blob);
                 const a = document.createElement('a');
                 a.href = url;
-                a.download = `discourse-analysis-page-${currentPage}-notes.txt`;
+                a.download = 'discourse-analysis-notes.txt';
                 document.body.appendChild(a);
                 a.click();
                 document.body.removeChild(a);
@@ -266,8 +224,6 @@
                     alert('Please write some notes before copying.');
                     return;
                 }
-
-                // Use the modern Clipboard API
                 navigator.clipboard.writeText(notes).then(function() {
                     // Show toast notification
                     toast.classList.add('show');
@@ -275,38 +231,10 @@
                         toast.classList.remove('show');
                     }, 2000);
                 }).catch(function(err) {
-                    // Fallback for older browsers
-                    notesField.select();
-                    document.execCommand('copy');
-                    alert('Notes copied to clipboard!');
-                    console.error('Could not copy text using Clipboard API, falling back...', err);
+                    console.error('Could not copy text: ', err);
+                    alert('Failed to copy notes. Please try again.');
                 });
             });
-
-            // Navigation functionality
-            function updateNavigation() {
-                pageIndicator.textContent = `Page ${currentPage} of ${totalPages}`;
-                prevBtn.disabled = currentPage === 1;
-                nextBtn.disabled = currentPage === totalPages;
-                loadNotes();
-            }
-
-            nextBtn.addEventListener('click', function() {
-                if (currentPage < totalPages) {
-                    currentPage++;
-                    updateNavigation();
-                }
-            });
-
-            prevBtn.addEventListener('click', function() {
-                if (currentPage > 1) {
-                    currentPage--;
-                    updateNavigation();
-                }
-            });
-
-            // Initial load
-            updateNavigation();
         });
     </script>
 </body>
