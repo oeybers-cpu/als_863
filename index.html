@@ -257,6 +257,56 @@
             text-align: center;
         }
 
+        /* Mobile-specific styles */
+        .mobile-tab-selector {
+            display: none;
+            width: 100%;
+            padding: 1rem;
+            margin-bottom: 1.5rem;
+            border-radius: 8px;
+            background: #f8f9fa;
+            border: 1px solid #ddd;
+            font-size: 1rem;
+            font-weight: 500;
+            color: #2c3e50;
+            appearance: none;
+            -webkit-appearance: none;
+            background-image: url("data:image/svg+xml;charset=UTF-8,%3csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%232c3e50' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'%3e%3cpolyline points='6 9 12 15 18 9'%3e%3c/polyline%3e%3c/svg%3e");
+            background-repeat: no-repeat;
+            background-position: right 1rem center;
+            background-size: 1em;
+        }
+
+        .mobile-tab-navigation {
+            display: none;
+            justify-content: space-between;
+            margin-top: 1.5rem;
+            padding-top: 1.5rem;
+            border-top: 1px solid #eaecef;
+        }
+
+        .nav-button {
+            padding: 0.8rem 1.5rem;
+            background: #3498db;
+            color: white;
+            border: none;
+            border-radius: 6px;
+            cursor: pointer;
+            font-weight: 600;
+            display: flex;
+            align-items: center;
+            transition: all 0.3s ease;
+        }
+
+        .nav-button:disabled {
+            background: #bdc3c7;
+            cursor: not-allowed;
+        }
+
+        .nav-button i {
+            margin-right: 8px;
+        }
+
         @media (max-width: 991px) {
             .container {
                 flex-direction: column;
@@ -274,6 +324,37 @@
                 width: 100%;
                 justify-content: center;
             }
+
+            .mobile-tab-selector {
+                display: block;
+            }
+
+            .tab-list {
+                display: none;
+            }
+
+            .mobile-tab-navigation {
+                display: flex;
+            }
+        }
+
+        @media (max-width: 576px) {
+            .header-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .container {
+                padding: 1rem;
+            }
+            
+            .content, .sidebar {
+                padding: 1.25rem;
+            }
+            
+            .nav-button {
+                padding: 0.7rem 1.2rem;
+                font-size: 0.9rem;
+            }
         }
     </style>
 </head>
@@ -287,6 +368,20 @@
 
     <div class="container">
         <nav class="sidebar">
+            <!-- Mobile tab selector -->
+            <select class="mobile-tab-selector" id="mobileTabSelector">
+                <option value="tab1" selected>Introduction to Discourse Analysis</option>
+                <option value="tab2">Big 'D' vs. Little 'd' Discourse</option>
+                <option value="tab3">Primary Discourse</option>
+                <option value="tab4">Secondary Discourse</option>
+                <option value="tab5">Social Languages</option>
+                <option value="tab6">Recognition and Identity</option>
+                <option value="tab7">Applied Language Studies Context</option>
+                <option value="tab8">Teaching Applications</option>
+                <option value="tab9">Research Methods and Tools</option>
+                <option value="tab10">Reflective Questions</option>
+            </select>
+
             <ul class="tab-list">
                 <li><button class="tab-button active" data-tab="tab1"><i class="fas fa-home"></i> Introduction to Discourse Analysis</button></li>
                 <li><button class="tab-button" data-tab="tab2"><i class="fas fa-project-diagram"></i> Big 'D' vs. Little 'd' Discourse</button></li>
@@ -554,6 +649,16 @@
                     </div>
                 </div>
             </div>
+
+            <!-- Mobile navigation buttons -->
+            <div class="mobile-tab-navigation">
+                <button class="nav-button" id="prevTab" disabled>
+                    <i class="fas fa-arrow-left"></i> Previous
+                </button>
+                <button class="nav-button" id="nextTab">
+                    Next <i class="fas fa-arrow-right"></i>
+                </button>
+            </div>
         </main>
     </div>
 
@@ -564,21 +669,128 @@
             // Tab switching functionality
             const tabButtons = document.querySelectorAll('.tab-button');
             const tabContents = document.querySelectorAll('.tab-content');
+            const mobileTabSelector = document.getElementById('mobileTabSelector');
+            const prevButton = document.getElementById('prevTab');
+            const nextButton = document.getElementById('nextTab');
             
+            // Array of all tab IDs for navigation
+            const tabIds = ['tab1', 'tab2', 'tab3', 'tab4', 'tab5', 'tab6', 'tab7', 'tab8', 'tab9', 'tab10'];
+            
+            // Function to switch tabs
+            function switchTab(tabId) {
+                // Deactivate all tabs
+                tabButtons.forEach(btn => btn.classList.remove('active'));
+                tabContents.forEach(content => content.classList.remove('active'));
+                
+                // Activate clicked tab
+                const activeButton = document.querySelector(`[data-tab="${tabId}"]`);
+                if (activeButton) activeButton.classList.add('active');
+                document.getElementById(tabId).classList.add('active');
+                
+                // Update mobile selector
+                mobileTabSelector.value = tabId;
+                
+                // Update navigation buttons
+                updateNavigationButtons(tabId);
+                
+                // Scroll to top of content on mobile
+                if (window.innerWidth < 992) {
+                    document.querySelector('.content').scrollIntoView({ behavior: 'smooth' });
+                }
+            }
+            
+            // Function to update navigation buttons state
+            function updateNavigationButtons(currentTabId) {
+                const currentIndex = tabIds.indexOf(currentTabId);
+                
+                // Enable/disable previous button
+                if (currentIndex === 0) {
+                    prevButton.disabled = true;
+                } else {
+                    prevButton.disabled = false;
+                }
+                
+                // Enable/disable next button
+                if (currentIndex === tabIds.length - 1) {
+                    nextButton.disabled = true;
+                } else {
+                    nextButton.disabled = false;
+                }
+            }
+            
+            // Desktop tab button events
             tabButtons.forEach(button => {
                 button.addEventListener('click', () => {
                     const tabId = button.getAttribute('data-tab');
-                    if (!tabId) return; // Skip if no data-tab attribute (for external links)
+                    switchTab(tabId);
+                });
+                
+                // Add touch event for mobile
+                button.addEventListener('touchstart', function(e) {
+                    // Prevent default to avoid any browser default behaviors
+                    if (e.cancelable) e.preventDefault();
                     
-                    // Deactivate all tabs
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));
+                    // Add a visual feedback for touch
+                    this.style.opacity = '0.7';
                     
-                    // Activate clicked tab
-                    button.classList.add('active');
-                    document.getElementById(tabId).classList.add('active');
+                    const tabId = this.getAttribute('data-tab');
+                    switchTab(tabId);
+                });
+                
+                button.addEventListener('touchend', function() {
+                    // Remove visual feedback
+                    this.style.opacity = '';
                 });
             });
+            
+            // Mobile tab selector event
+            mobileTabSelector.addEventListener('change', function() {
+                switchTab(this.value);
+            });
+            
+            // Navigation buttons events
+            prevButton.addEventListener('click', function() {
+                if (this.disabled) return;
+                
+                const currentTab = document.querySelector('.tab-content.active').id;
+                const currentIndex = tabIds.indexOf(currentTab);
+                
+                if (currentIndex > 0) {
+                    switchTab(tabIds[currentIndex - 1]);
+                }
+            });
+            
+            nextButton.addEventListener('click', function() {
+                if (this.disabled) return;
+                
+                const currentTab = document.querySelector('.tab-content.active').id;
+                const currentIndex = tabIds.indexOf(currentTab);
+                
+                if (currentIndex < tabIds.length - 1) {
+                    switchTab(tabIds[currentIndex + 1]);
+                }
+            });
+            
+            // Add touch events for navigation buttons on mobile
+            [prevButton, nextButton].forEach(button => {
+                button.addEventListener('touchstart', function(e) {
+                    if (this.disabled) return;
+                    if (e.cancelable) e.preventDefault();
+                    
+                    // Visual feedback
+                    this.style.opacity = '0.7';
+                    
+                    // Simulate click
+                    this.click();
+                });
+                
+                button.addEventListener('touchend', function() {
+                    this.style.opacity = '';
+                });
+            });
+            
+            // Initialize navigation buttons
+            updateNavigationButtons('tab1');
             
             // Notes functionality
             const toast = document.getElementById('toast');
@@ -640,10 +852,22 @@
                     document.body.removeChild(a);
                     URL.revokeObjectURL(url);
                 });
+                
+                // Add touch event for mobile
+                button.addEventListener('touchstart', function(e) {
+                    if (e.cancelable) e.preventDefault();
+                    this.style.opacity = '0.7';
+                    this.click();
+                });
+                
+                button.addEventListener('touchend', function() {
+                    this.style.opacity = '';
+                });
             });
             
             // Download all reflective responses
-            document.getElementById('download-all-reflective').addEventListener('click', function() {
+            const downloadAllBtn = document.getElementById('download-all-reflective');
+            downloadAllBtn.addEventListener('click', function() {
                 let allContent = "Reflective Questions - Discourse Analysis within a Sociocultural Linguistic Framework\n";
                 allContent += "====================================================================================\n\n";
                 
@@ -670,6 +894,17 @@
                 a.click();
                 document.body.removeChild(a);
                 URL.revokeObjectURL(url);
+            });
+            
+            // Add touch event for download all button
+            downloadAllBtn.addEventListener('touchstart', function(e) {
+                if (e.cancelable) e.preventDefault();
+                this.style.opacity = '0.7';
+                this.click();
+            });
+            
+            downloadAllBtn.addEventListener('touchend', function() {
+                this.style.opacity = '';
             });
         });
     </script>
