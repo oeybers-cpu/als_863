@@ -59,6 +59,7 @@
             box-shadow: 0 4px 10px rgba(0, 0, 0, 0.08);
             padding: 1.5rem;
             flex: 0 0 300px;
+            width: 100%;
         }
 
         .tab-list {
@@ -218,6 +219,7 @@
             opacity: 0;
             transition: opacity 0.3s;
             box-shadow: 0 4px 12px rgba(0, 0, 0, 0.15);
+            z-index: 1000;
         }
 
         .toast.show {
@@ -263,7 +265,9 @@
             }
             
             .sidebar {
-                flex: 0 0 auto;
+                flex: 0 0 100%;
+                width: 100%;
+                max-width: 100%;
             }
             
             .notes-actions {
@@ -273,6 +277,43 @@
             button.action-btn {
                 width: 100%;
                 justify-content: center;
+            }
+            
+            /* Improve touch targets for mobile */
+            .tab-button {
+                min-height: 50px;
+                font-size: 1rem;
+            }
+            
+            .header-content h1 {
+                font-size: 1.8rem;
+            }
+            
+            .course-info {
+                font-size: 1rem;
+            }
+        }
+        
+        /* Additional mobile touch optimizations */
+        @media (max-width: 768px) {
+            .container {
+                padding: 1rem;
+            }
+            
+            .sidebar {
+                padding: 1rem;
+            }
+            
+            .content {
+                padding: 1.5rem;
+            }
+            
+            .tab-button {
+                padding: 0.8rem;
+            }
+            
+            textarea {
+                min-height: 150px;
             }
         }
     </style>
@@ -562,67 +603,71 @@
     <script>
         document.addEventListener('DOMContentLoaded', function() {
             // Tab switching functionality
-            const tabButtons = document.querySelectorAll('.tab-button');
-            const tabContents = document.querySelectorAll('.tab-content');
+            var tabButtons = document.querySelectorAll('.tab-button');
+            var tabContents = document.querySelectorAll('.tab-content');
             
-            tabButtons.forEach(button => {
-                button.addEventListener('click', () => {
-                    const tabId = button.getAttribute('data-tab');
-                    if (!tabId) return; // Skip if no data-tab attribute (for external links)
+            for (var i = 0; i < tabButtons.length; i++) {
+                tabButtons[i].addEventListener('click', function() {
+                    var tabId = this.getAttribute('data-tab');
+                    if (!tabId) return;
                     
-                    // Deactivate all tabs
-                    tabButtons.forEach(btn => btn.classList.remove('active'));
-                    tabContents.forEach(content => content.classList.remove('active'));
+                    for (var j = 0; j < tabButtons.length; j++) {
+                        tabButtons[j].classList.remove('active');
+                    }
+                    for (var k = 0; k < tabContents.length; k++) {
+                        tabContents[k].classList.remove('active');
+                    }
                     
-                    // Activate clicked tab
-                    button.classList.add('active');
+                    this.classList.add('active');
                     document.getElementById(tabId).classList.add('active');
                 });
-            });
+            }
             
             // Notes functionality
-            const toast = document.getElementById('toast');
+            var toast = document.getElementById('toast');
             
             // Load saved notes from localStorage
-            for (let i = 1; i <= 9; i++) {
-                const savedNotes = localStorage.getItem(`tab${i}-notes`);
+            for (var i = 1; i <= 9; i++) {
+                var savedNotes = localStorage.getItem('tab' + i + '-notes');
                 if (savedNotes) {
-                    document.getElementById(`tab${i}-notes`).value = savedNotes;
+                    document.getElementById('tab' + i + '-notes').value = savedNotes;
                 }
             }
             
             // Load saved reflective responses
-            for (let i = 1; i <= 8; i++) {
-                const savedResponse = localStorage.getItem(`reflective-q${i}`);
+            for (var i = 1; i <= 8; i++) {
+                var savedResponse = localStorage.getItem('reflective-q' + i);
                 if (savedResponse) {
-                    document.getElementById(`reflective-q${i}`).value = savedResponse;
+                    document.getElementById('reflective-q' + i).value = savedResponse;
                 }
             }
             
             // Save notes when user types
-            document.querySelectorAll('textarea').forEach(textarea => {
-                textarea.addEventListener('input', function() {
-                    const id = this.id;
+            var textareas = document.querySelectorAll('textarea');
+            for (var i = 0; i < textareas.length; i++) {
+                textareas[i].addEventListener('input', function() {
+                    var id = this.id;
                     localStorage.setItem(id, this.value);
                 });
-            });
+            }
             
             // Download notes functionality
-            document.querySelectorAll('.download-btn').forEach(button => {
-                button.addEventListener('click', function() {
-                    let content, filename;
+            var downloadButtons = document.querySelectorAll('.download-btn');
+            for (var i = 0; i < downloadButtons.length; i++) {
+                downloadButtons[i].addEventListener('click', function() {
+                    var content, filename;
                     
                     if (this.hasAttribute('data-tab')) {
-                        const tabId = this.getAttribute('data-tab');
-                        content = document.getElementById(`${tabId}-notes`).value;
-                        filename = `${tabId}-notes.txt`;
+                        var tabId = this.getAttribute('data-tab');
+                        content = document.getElementById(tabId + '-notes').value;
+                        filename = tabId + '-notes.txt';
                     } else if (this.hasAttribute('data-reflective')) {
-                        const qNum = this.getAttribute('data-reflective');
-                        content = document.getElementById(`reflective-q${qNum}`).value;
-                        const question = document.querySelector(`[data-reflective="${qNum}"]`).closest('.reflective-question').querySelector('.question-text').textContent;
-                        filename = `Reflective-Response-${qNum}.txt`;
-                        // Format content with question and response for individual download
-                        content = `${question}\n\n${content}`;
+                        var qNum = this.getAttribute('data-reflective');
+                        content = document.getElementById('reflective-q' + qNum).value;
+                        var questionElement = document.querySelector('[data-reflective="' + qNum + '"]').closest('.reflective-question').querySelector('.question-text');
+                        var question = questionElement ? questionElement.textContent : 'Question ' + qNum;
+                        filename = 'Reflective-Response-' + qNum + '.txt';
+                        content = question + '\n\n' + content;
                     }
                     
                     if (content.trim() === '') {
@@ -630,9 +675,9 @@
                         return;
                     }
                     
-                    const blob = new Blob([content], { type: 'text/plain' });
-                    const url = URL.createObjectURL(blob);
-                    const a = document.createElement('a');
+                    var blob = new Blob([content], { type: 'text/plain' });
+                    var url = URL.createObjectURL(blob);
+                    var a = document.createElement('a');
                     a.href = url;
                     a.download = filename;
                     document.body.appendChild(a);
@@ -640,19 +685,20 @@
                     document.body.removeChild(a);
                     URL.revokeObjectURL(url);
                 });
-            });
+            }
             
             // Download all reflective responses
             document.getElementById('download-all-reflective').addEventListener('click', function() {
-                let allContent = "Reflective Questions - Discourse Analysis within a Sociocultural Linguistic Framework\n";
+                var allContent = "Reflective Questions - Discourse Analysis within a Sociocultural Linguistic Framework\n";
                 allContent += "====================================================================================\n\n";
                 
-                for (let i = 1; i <= 8; i++) {
-                    const question = document.querySelector(`[data-reflective="${i}"]`).closest('.reflective-question').querySelector('.question-text').textContent;
-                    const response = document.getElementById(`reflective-q${i}`).value;
+                for (var i = 1; i <= 8; i++) {
+                    var questionElement = document.querySelector('[data-reflective="' + i + '"]').closest('.reflective-question').querySelector('.question-text');
+                    var question = questionElement ? questionElement.textContent : 'Question ' + i;
+                    var response = document.getElementById('reflective-q' + i).value;
                     
-                    allContent += `${question}\n`;
-                    allContent += `${response}\n\n`;
+                    allContent += question + '\n';
+                    allContent += response + '\n\n';
                     allContent += "------------------------------------------------------------------------------------\n\n";
                 }
                 
@@ -661,9 +707,9 @@
                     return;
                 }
                 
-                const blob = new Blob([allContent], { type: 'text/plain' });
-                const url = URL.createObjectURL(blob);
-                const a = document.createElement('a');
+                var blob = new Blob([allContent], { type: 'text/plain' });
+                var url = URL.createObjectURL(blob);
+                var a = document.createElement('a');
                 a.href = url;
                 a.download = 'All-Reflective-Responses.txt';
                 document.body.appendChild(a);
